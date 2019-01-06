@@ -42,4 +42,6 @@ public class InquiryDaoImpl implements InquiryDao{
 	}
 	
 	
+	
+	
 }
