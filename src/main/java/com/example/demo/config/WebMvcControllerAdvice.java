@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,7 +17,7 @@ import com.example.demo.service.EmptyListException;
 @ControllerAdvice
 public class WebMvcControllerAdvice {
 
-    @InitBinder//重複してる？RegistrationControllerと
+    @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         // Stringの空文字をNULLに
         dataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
@@ -32,8 +33,5 @@ public class WebMvcControllerAdvice {
 	public String handleException(EmptyListException e) {
 		return "err/EmptyList";
 	}
-
-	
-
    
 }

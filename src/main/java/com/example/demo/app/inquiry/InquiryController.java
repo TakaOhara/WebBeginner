@@ -1,7 +1,6 @@
 package com.example.demo.app.inquiry;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -9,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Inquiry;
 import com.example.demo.service.InquiryServiceImpl;
@@ -46,7 +45,8 @@ public class InquiryController {
 	}
 	
 	@GetMapping("/form")
-	public String form(InquiryForm inquiryForm, Model model) {
+	public String form(InquiryForm inquiryForm, Model model, @ModelAttribute("complete") String complete) {
+		System.out.println(complete);
 		model.addAttribute("title", "お問い合わせフォーム");
 		return "inquiry/form";
 	}
@@ -82,13 +82,15 @@ public class InquiryController {
 	public String complete(
 			@Valid @ModelAttribute InquiryForm inquiryForm,
 	        BindingResult result,
-	        Model model) {
+	        Model model,
+	        RedirectAttributes redirectAttributes) {
 		
 		if(result.hasErrors()) {
 			return "inquiry/form";
 		}
 		
 		inquiryService.save(inquiryForm);
+		redirectAttributes.addFlashAttribute("complete", "送信が完了しました");
 		return "redirect:/inquiry/form?complete";
 	}
 	

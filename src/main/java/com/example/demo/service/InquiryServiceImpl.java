@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.app.inquiry.InquiryForm;
 import com.example.demo.entity.Inquiry;
-import com.example.demo.repository.InquiryDaoImpl;
+import com.example.demo.repository.InquiryDao;
 
 @Service
 public class InquiryServiceImpl implements InquiryService{
 
 	@Autowired
-	InquiryDaoImpl dao;
+	InquiryDao dao;
 	
 	@Override
 	public int save(InquiryForm inquiryForm) {

@@ -20,7 +20,6 @@ public class SurveyForm implements Serializable {
     
     private int id;
 
-    @NotNull(message = "年齢を入力してください")
     @Min(0)
     @Max(150)
     private int age;

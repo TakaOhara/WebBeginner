@@ -21,7 +21,7 @@ public class InquiryDaoImpl implements InquiryDao{
 	@Override
 	public int insertInquiry(Inquiry inquiry) {
 		return jdbcTemplate.update("INSERT INTO INQUIRY(name, email, contents, created) VALUES(?, ?, ?, ?)",
-				new Object[] { inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getCreated() });	
+				 inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getCreated() );	
 	}
 
 	@Override
