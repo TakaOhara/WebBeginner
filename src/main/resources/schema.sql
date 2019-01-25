@@ -13,7 +13,7 @@ CREATE TABLE inquiry
    email VARCHAR(100) NOT NULL,
    contents VARCHAR(500) NOT NULL,
    created DATETIME NOT NULL,
-   primary key(id)
+   PRIMARY KEY(id)
 );
 
 CREATE TABLE survey
@@ -23,5 +23,5 @@ CREATE TABLE survey
    satisfaction INT NOT NULL,
    comment VARCHAR(100),
    created DATETIME NOT NULL,
-   primary key(id)
+   PRIMARY KEY(id)
 );

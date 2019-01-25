@@ -7,7 +7,7 @@ import com.example.demo.entity.Inquiry;
 
 public interface InquiryService {
 	
-	int save(InquiryForm inquiryForm);
+	int save(Inquiry inquiry);
 	
 	List<Inquiry> getAll();
 

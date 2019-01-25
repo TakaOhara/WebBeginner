@@ -17,12 +17,7 @@ public class InquiryServiceImpl implements InquiryService{
 	InquiryDao dao;
 	
 	@Override
-	public int save(InquiryForm inquiryForm) {
-		Inquiry inquiry = new Inquiry();
-		inquiry.setName(inquiryForm.getName());
-		inquiry.setEmail(inquiryForm.getEmail());
-		inquiry.setContents(inquiryForm.getContents());
-		inquiry.setCreated(LocalDateTime.now());
+	public int save(Inquiry inquiry) {
 		return dao.insertInquiry(inquiry);
 	}
 

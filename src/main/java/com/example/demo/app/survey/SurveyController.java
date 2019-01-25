@@ -1,5 +1,6 @@
 package com.example.demo.app.survey;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -31,14 +32,14 @@ public class SurveyController {
 		
 		model.addAttribute("surveyList", list);
 		model.addAttribute("average", average);
-		model.addAttribute("title", "アンケート一覧");
+		model.addAttribute("title", "Servey Index");
 		
 		return "survey/index";
 	}
 	
 	@GetMapping("/form")
 	public String form(SurveyForm surveyForm, Model model) {
-		model.addAttribute("title", "アンケートフォーム");
+		model.addAttribute("title", "Servey Form");
 		return "survey/form";
 	}
 	
@@ -48,7 +49,7 @@ public class SurveyController {
 			@Valid @ModelAttribute SurveyForm surveyForm,
 	        BindingResult result,
 	        Model model) {
-		model.addAttribute("title", "確認ページ");
+		model.addAttribute("title", "Confirm Page");
 		model.addAttribute("surveyForm", surveyForm);
 		if(result.hasErrors()) {
 			return "survey/form";
@@ -66,7 +67,13 @@ public class SurveyController {
 			return "survey/form";
 		}
 		
-		surveyService.save(surveyForm);
+		Survey survey = new Survey();
+		survey.setAge(surveyForm.getAge());
+		survey.setSatisfaction(surveyForm.getSatisfaction());
+		survey.setComment(surveyForm.getComment());
+		survey.setCreated(LocalDateTime.now());
+		
+		surveyService.save(survey);
 		return "redirect:/survey/form?complete";
 	}
 	

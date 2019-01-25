@@ -17,12 +17,7 @@ public class SurveyServiceImpl implements SurveyService{
 	SurveyDaoImpl dao;
 	
 	@Override
-	public int save(SurveyForm surveyForm) {
-		Survey survey = new Survey();
-		survey.setAge(surveyForm.getAge());
-		survey.setSatisfaction(surveyForm.getSatisfaction());
-		survey.setComment(surveyForm.getComment());
-		survey.setCreated(LocalDateTime.now());
+	public int save(Survey survey) {
 		return dao.insertSurvey(survey);
 	}
 

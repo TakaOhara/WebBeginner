@@ -11,7 +11,7 @@
     <title>Starter Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css"  th:href="@{/css/starter-template.css}" rel="stylesheet">
@@ -56,6 +56,8 @@
 
       <div class="starter-template">
         <h1>Bootstrap starter template</h1>
+        <p th:text="${name}">Bootstrap starter template</p>
+        <p th:text="${email}">Bootstrap starter template</p>
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
       </div>
 

@@ -7,7 +7,7 @@ import com.example.demo.entity.Survey;
 
 public interface SurveyService {
 	
-	int save(SurveyForm surveyForm);
+	int save(Survey survey);
 	
 	List<Survey> getAll();
 	
