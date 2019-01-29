@@ -48,10 +48,10 @@ public class InquiryController {
 	}
 	
 	@GetMapping("/form")
-	public String form(InquiryForm inquiryForm, Model model, @ModelAttribute("complete") String complete) {
+	public String form(InquiryForm inquiryForm, Model model, @ModelAttribute("complete") String complete) {//InquiryFormはhtmlのエラー出力部分と関わっている
 		model.addAttribute("title", "Inquiry Form");
-		//return "inquiry/form";
-		return "inquiry/form_boot";
+		return "inquiry/form";
+		//return "inquiry/form_boot";
 	}
 	
 	@PostMapping("/form")
@@ -76,12 +76,11 @@ public class InquiryController {
 	
 	@PostMapping("/confirm")
 	public String confirm(
-			@Validated @ModelAttribute InquiryForm inquiryForm,
+			@Validated InquiryForm inquiryForm,//@ModelAttributeは必要？
 	        BindingResult result,
 	        Model model) {
-		model.addAttribute("inquiryForm", inquiryForm);
 		if(result.hasErrors()) {
-			model.addAttribute("title", "Inquiry");
+			model.addAttribute("title", "Inquiry Form");
 			//return "inquiry/form";
 			return "inquiry/form_boot";
 		}
@@ -98,6 +97,7 @@ public class InquiryController {
 	        RedirectAttributes redirectAttributes) {
 		
 		if(result.hasErrors()) {
+			model.addAttribute("title", "Inquiry Form");
 			return "inquiry/form";
 		}
 		
@@ -109,7 +109,7 @@ public class InquiryController {
 		inquiry.setCreated(LocalDateTime.now());
 		
 		inquiryService.save(inquiry);
-		redirectAttributes.addFlashAttribute("complete", "Registerd!");
+		redirectAttributes.addFlashAttribute("complete", "Completed!");
 		return "redirect:/inquiry/form?complete";
 	}
 	

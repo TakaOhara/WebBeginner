@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Survey;
 import com.example.demo.service.SurveyServiceImpl;
@@ -38,6 +39,12 @@ public class SurveyController {
 	}
 	
 	@GetMapping("/form")
+	public String form(SurveyForm surveyForm, Model model, @ModelAttribute("complete") String complete) {
+		model.addAttribute("title", "Servey Form");
+		return "survey/form";
+	}
+	
+	@PostMapping("/form")
 	public String form(SurveyForm surveyForm, Model model) {
 		model.addAttribute("title", "Servey Form");
 		return "survey/form";
@@ -49,11 +56,12 @@ public class SurveyController {
 			@Valid @ModelAttribute SurveyForm surveyForm,
 	        BindingResult result,
 	        Model model) {
-		model.addAttribute("title", "Confirm Page");
 		model.addAttribute("surveyForm", surveyForm);
 		if(result.hasErrors()) {
+			model.addAttribute("title", "Survey Form");
 			return "survey/form";
 		}
+		model.addAttribute("title", "Confirm Page");
 		return "survey/confirm";
 	}
 	
@@ -61,9 +69,11 @@ public class SurveyController {
 	public String complete(
 			@Valid @ModelAttribute SurveyForm surveyForm,
 	        BindingResult result,
-	        Model model) {
+	        Model model,
+	        RedirectAttributes redirectAttributes) {
 		
 		if(result.hasErrors()) {
+			model.addAttribute("title", "Survey Form");
 			return "survey/form";
 		}
 		
@@ -74,6 +84,7 @@ public class SurveyController {
 		survey.setCreated(LocalDateTime.now());
 		
 		surveyService.save(survey);
+		redirectAttributes.addFlashAttribute("complete", "Completed!");
 		return "redirect:/survey/form?complete";
 	}
 	
