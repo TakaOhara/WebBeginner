@@ -13,8 +13,12 @@ import com.example.demo.repository.InquiryDao;
 @Service
 public class InquiryServiceImpl implements InquiryService{
 
+	private final InquiryDao dao;
+	
 	@Autowired
-	InquiryDao dao;
+	public InquiryServiceImpl(InquiryDao dao) {
+		this.dao = dao;
+	}
 	
 	@Override
 	public int save(Inquiry inquiry) {
