@@ -15,8 +15,12 @@ import com.example.demo.entity.Inquiry;
 @Repository
 public class InquiryDaoImpl implements InquiryDao{
 	
+	private final JdbcTemplate jdbcTemplate;
+	
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	public InquiryDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public int insertInquiry(Inquiry inquiry) {
@@ -40,8 +44,5 @@ public class InquiryDaoImpl implements InquiryDao{
 		}
 		return list;
 	}
-	
-	
-	
 	
 }
