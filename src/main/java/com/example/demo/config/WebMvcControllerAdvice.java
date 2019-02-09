@@ -1,14 +1,14 @@
 package com.example.demo.config;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import com.example.demo.service.EmptyListException;
+import com.example.demo.service.InquiryNotFoundException;
 
 
 /**
@@ -23,15 +23,16 @@ public class WebMvcControllerAdvice {
         dataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
     
-    //アプリケーション全体で共通的に行う例外処理
-	@ExceptionHandler(BadSqlGrammarException.class)
-	public String handleException(BadSqlGrammarException e) {
-		return "err/SQL";
+	@ExceptionHandler(EmptyResultDataAccessException.class)
+	public String handleException(EmptyResultDataAccessException e,Model model) {
+		model.addAttribute("message", e);
+		return "error/CustomPage";
 	}
 	
-	@ExceptionHandler(EmptyListException.class)
-	public String handleException(EmptyListException e) {
-		return "err/EmptyList";
-	}
+//	@ExceptionHandler(InquiryNotFoundException.class)
+//	public String handleException(InquiryNotFoundException e,Model model) {
+//		model.addAttribute("message", e);
+//		return "error/CustomPage";
+//	}
    
 }

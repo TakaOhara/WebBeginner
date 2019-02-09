@@ -1,12 +1,10 @@
 package com.example.demo.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.app.inquiry.InquiryForm;
 import com.example.demo.entity.Inquiry;
 import com.example.demo.repository.InquiryDao;
 
@@ -26,10 +24,22 @@ public class InquiryServiceImpl implements InquiryService{
 	}
 
 	@Override
-	public List<Inquiry> getAll() {
-		if(dao.getAll().isEmpty()) {
-			throw new EmptyListException("SQL error");
+	public void update(Inquiry inquiry) {
+		
+		//return dao.updateInquiry(inquiry);
+		if(dao.updateInquiry(inquiry) == 0) {
+			throw new InquiryNotFoundException("can't find the same ID");
 		}
+	}
+	
+	@Override
+	public List<Inquiry> getAll() {
+//		List<Inquiry> list = null;
+//		list = dao.getAll();
+//		if(list.isEmpty()) {
+//			throw new EmptyListException("No inquiry");
+//		}
+//		return list;
 		return dao.getAll();
 	}
 }

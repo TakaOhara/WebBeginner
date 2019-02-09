@@ -19,7 +19,7 @@
   <body>
 
 
-	<div th:replace="~{block/header_boot::headerA_boot}"></div>
+	<div th:replace="~{block/header_boot::headerA}"></div>
     <main role="main" class="container">
 
       <div class="starter-template">
@@ -39,7 +39,7 @@
   </thead>
   <tbody>
     <tr th:each="inquiry : ${inquiryList}">
-      <th  scope="row" th:text="${inquiry.id}">Mark</td>
+      <td  scope="row" th:text="${inquiry.id}">Mark</td>
       <td th:text="${inquiry.name}">Otto</td>
       <td th:text="${inquiry.email}">@mdo</td>
       <td th:text="${inquiry.contents}">Otto</td>

@@ -15,8 +15,12 @@ import com.example.demo.entity.Survey;
 @Repository
 public class SurveyDaoImpl implements SurveyDao{
 	
+	private final JdbcTemplate jdbcTemplate;
+	
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	public SurveyDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public int insertSurvey(Survey survey) {

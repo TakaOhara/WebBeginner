@@ -15,9 +15,14 @@ import com.example.demo.entity.Inquiry;
 
 @Controller
 @RequestMapping("/")
-public class JdbcController {
+public class SampleController {
+	
+	private final JdbcTemplate jdbcTemplate;
+	
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	public SampleController(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 	
 	@GetMapping
 	public String test(Model model) {
@@ -27,7 +32,6 @@ public class JdbcController {
 		//System.out.println(repository.findById2(10001L));
 		
 		String sql = "SELECT id, name, email, contents, created FROM inquiry WHERE id = 1";
-		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 		Map<String, Object> map = jdbcTemplate.queryForMap(sql);
 		model.addAttribute("name", map.get("name"));
 		model.addAttribute("email", map.get("email"));

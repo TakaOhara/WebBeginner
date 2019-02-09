@@ -10,5 +10,7 @@ public interface InquiryDao {
 	
 	int insertInquiry(Inquiry inquiry);
 	
+	int updateInquiry(Inquiry inquiry);
+	
 	List<Inquiry> getAll();
 }

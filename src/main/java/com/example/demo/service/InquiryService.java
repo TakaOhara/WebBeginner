@@ -9,6 +9,8 @@ public interface InquiryService {
 	
 	int save(Inquiry inquiry);
 	
+	void update(Inquiry inquiry);
+	
 	List<Inquiry> getAll();
 
 }

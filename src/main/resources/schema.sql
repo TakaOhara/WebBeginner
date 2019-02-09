@@ -25,3 +25,13 @@ CREATE TABLE survey
    created DATETIME NOT NULL,
    PRIMARY KEY(id)
 );
+
+CREATE TABLE profile
+(
+   id INT NOT NULL AUTO_INCREMENT,
+   profile_id VARCHAR(8) NOT NULL,
+   profile_name VARCHAR(50) NOT NULL,
+   image_name VARCHAR(100),
+   created DATETIME NOT NULL,
+   PRIMARY KEY(id)
+);

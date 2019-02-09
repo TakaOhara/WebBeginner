@@ -15,7 +15,7 @@
 	<input id="age" name="age" type="number" th:value="*{age}"><br>
 	<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
 	<label for="email">満足度:</label>
-	<input type="radio" name="satisfaction" value="1"  th:checked="*{satisfaction == 1}">1
+	<input type="radio" name="satisfaction" value="1" th:checked="*{satisfaction == 1}">1
 	<input type="radio" name="satisfaction" value="2" th:checked="*{satisfaction == 2}">2
 	<input type="radio" name="satisfaction" value="3" th:checked="*{satisfaction == 3}">3
 	<input type="radio" name="satisfaction" value="4" th:checked="*{satisfaction == 4}">4
