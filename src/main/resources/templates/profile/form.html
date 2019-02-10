@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+<div th:replace="~{block/header::headerA}"></div>
+<h1 th:text="${title}">仮のタイトル</h1>
+<form method="post" action="#" th:action="@{/profile/add}" th:object="${profileForm}">
+	<label for="name">お名前(表示用):</label>
+	<input id="name" name="name" type="text"><br>
+	<label for="image">画像:</label>
+	<input type="file" name="image"><br>
+	<input type="submit" value="確認ページへ">
+</form>
+</body>
+</html>
