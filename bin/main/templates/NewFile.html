@@ -55,6 +55,7 @@
     <main role="main" class="container">
 
       <div class="starter-template">
+        <img th:src="${'data:image/png;base64,' + image}"/> <!-- BASE64形式で表示 -->
         <h1>Bootstrap starter template</h1>
         <p th:text="${name}">Bootstrap starter template</p>
         <p th:text="${email}">Bootstrap starter template</p>
